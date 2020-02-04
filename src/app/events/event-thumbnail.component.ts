@@ -15,7 +15,7 @@ import { Component, Input } from "@angular/core";
         font-weight: bold;
       }
       .thumbnail {
-        min-height: 210px;
+        min-height: 230px;
       }
       .pad-left {
         margin-left: 10px;
