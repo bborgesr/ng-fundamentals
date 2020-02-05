@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
 import { ToastrService } from "../../common/toastr.service";
+import { IEvent } from "../shared/index";
 
 @Component({
   templateUrl: "./event-details.component.html",
@@ -18,7 +19,7 @@ import { ToastrService } from "../../common/toastr.service";
   ]
 })
 export class EventDetailsComponent {
-  event: any;
+  event: IEvent;
 
   constructor(
     private eventService: EventService,

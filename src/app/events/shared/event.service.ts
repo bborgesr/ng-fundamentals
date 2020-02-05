@@ -1,10 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject, Observable } from "rxjs";
+
+import { IEvent } from "./event.model";
 
 @Injectable()
 export class EventService {
-  getEvents() {
-    let subject = new Subject();
+  getEvents(): Observable<IEvent[]> {
+    let subject = new Subject<IEvent[]>();
     setTimeout(() => {
       subject.next(EVENTS);
       subject.complete();
@@ -12,12 +14,12 @@ export class EventService {
     return subject;
   }
 
-  getEvent(id: number) {
+  getEvent(id: number): IEvent {
     return EVENTS.find(event => event.id === id);
   }
 }
 
-const EVENTS = [
+const EVENTS: IEvent[] = [
   {
     id: 1,
     name: "Angular Connect",
