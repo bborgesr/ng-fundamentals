@@ -3,7 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
 import { ToastrService } from "../../common/toastr.service";
-import { IEvent } from "../shared/index";
+import { IEvent, ISession } from "../shared/index";
 
 @Component({
   templateUrl: "./event-details.component.html",
@@ -15,11 +15,15 @@ import { IEvent } from "../shared/index";
       .event-image {
         height: 100px;
       }
+      a {
+        cursor: pointer;
+      }
     `
   ]
 })
 export class EventDetailsComponent {
   event: IEvent;
+  addMode: boolean = false;
 
   constructor(
     private eventService: EventService,
@@ -34,5 +38,24 @@ export class EventDetailsComponent {
 
   handleImageClick() {
     this.toastrService.success(this.event.name);
+  }
+
+  addSession() {
+    this.addMode = true;
+  }
+
+  saveNewSession(session: ISession) {
+    const nextId = Math.max.apply(
+      null,
+      this.event.sessions.map(s => s.id)
+    );
+    session.id = nextId + 1;
+    this.event.sessions.push(session);
+    this.eventService.updateEvent(this.event);
+    this.addMode = false;
+  }
+
+  cancelAddSession() {
+    this.addMode = false;
   }
 }
