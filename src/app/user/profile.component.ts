@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 
 import { AuthService } from "./auth.service";
+import { TOASTR_TOKEN } from "../common/toastr.service";
 
 @Component({
   templateUrl: "./profile.component.html",
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     @Inject(forwardRef(() => AuthService)) private authService: AuthService,
-    private router: Router
+    private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr: any
   ) {}
 
   ngOnInit() {
@@ -57,6 +59,7 @@ export class ProfileComponent implements OnInit {
         formValues.firstName,
         formValues.lastName
       );
+      this.toastr.success("Profile Saved!");
       this.router.navigate(["events"]);
     }
   }

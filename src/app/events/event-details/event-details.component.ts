@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
-import { ToastrService } from "../../common/toastr.service";
+import { TOASTR_TOKEN } from "../../common/toastr.service";
 import { IEvent, ISession } from "../shared/index";
 
 @Component({
@@ -33,7 +33,7 @@ export class EventDetailsComponent {
   constructor(
     private eventService: EventService,
     private route: ActivatedRoute,
-    private toastrService: ToastrService
+    @Inject(TOASTR_TOKEN) private toastr: any
   ) {}
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class EventDetailsComponent {
   }
 
   handleImageClick() {
-    this.toastrService.success(this.event.name);
+    this.toastr.success(this.event.name);
   }
 
   addSession() {
