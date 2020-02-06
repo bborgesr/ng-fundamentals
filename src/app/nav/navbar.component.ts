@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { AuthService } from "../user/auth.service";
 import { ISession, EventService } from "../events";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "nav-bar",
@@ -28,11 +29,22 @@ export class NavBarComponent {
   searchTerm: string = "";
   foundSessions: ISession[];
 
-  constructor(public auth: AuthService, private eventService: EventService) {}
+  constructor(
+    public auth: AuthService,
+    private eventService: EventService,
+    private router: Router
+  ) {}
 
   searchSessions(searchTerm) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
     });
   }
+
+  // onSessionClick(eventId) {
+  //   // this.router.navigateByUrl("/events/" + eventId);
+  //   this.router.navigateByUrl("/events/" + eventId);
+  //   // .then(() => this.router.navigate(["/events/" + eventId]));
+  //   // .then(() => this.router.navigate(["/events/" + eventId]));
+  // }
 }
