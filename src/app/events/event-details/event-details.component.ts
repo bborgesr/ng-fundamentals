@@ -18,12 +18,16 @@ import { IEvent, ISession } from "../shared/index";
       a {
         cursor: pointer;
       }
+      .btn {
+        margin: 10px;
+      }
     `
   ]
 })
 export class EventDetailsComponent {
   event: IEvent;
   addMode: boolean = false;
+  filterBy: string = "all";
 
   constructor(
     private eventService: EventService,
