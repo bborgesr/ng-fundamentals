@@ -10,14 +10,14 @@ import {
   EventDetailsComponent,
   CreateEventComponent,
   EventService,
-  EventRouteActivator,
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
   UpvoteComponent,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolver
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/navbar.component";
@@ -66,7 +66,6 @@ import jQuery from "jquery";
       provide: TOASTR_TOKEN,
       useValue: toastr
     },
-    EventRouteActivator,
     {
       provide: "canDeactivateCreateEvent",
       useValue: checkDirtyState
@@ -77,7 +76,8 @@ import jQuery from "jquery";
       provide: JQ_TOKEN,
       useValue: jQuery
     },
-    VoterService
+    VoterService,
+    EventResolver
   ],
   bootstrap: [EventsAppComponent]
 })

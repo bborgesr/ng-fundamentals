@@ -42,10 +42,13 @@ export class EventDetailsComponent {
     //
     // const id: number = Number(this.route.snapshot.params["id"]);
     // this.event = this.eventService.getEvent(id);
-    this.route.params.forEach((params: Params) => {
-      const id: number = Number(params["id"]);
-      this.event = this.eventService.getEvent(id);
+    this.route.data.forEach(data => {
+      // const id: number = Number(params["id"]);
+      // this.eventService.getEvent(id).subscribe((event: IEvent) => {
+      // this.event = event;
+      this.event = data["event"];
       this.addMode = false;
+      // });
     });
   }
 
