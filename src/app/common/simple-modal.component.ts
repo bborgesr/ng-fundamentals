@@ -1,9 +1,9 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, ViewChild, ElementRef } from "@angular/core";
 
 @Component({
   selector: "simple-modal",
   template: `
-    <div id="{{ elementId }}" class="modal fade" tabindex="-1">
+    <div id="{{ elementId }}" #modalcontainer class="modal fade" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -12,7 +12,7 @@ import { Component, Input } from "@angular/core";
             </button>
             <h4 class="modal-title">{{ title }}</h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body" (click)="closeModal()">
             <ng-content></ng-content>
           </div>
         </div>
@@ -31,4 +31,13 @@ import { Component, Input } from "@angular/core";
 export class SimpleModalComponent {
   @Input() title: string;
   @Input() elementId: string;
+  @Input() closeOnBodyClick: string;
+  @ViewChild("modalcontainer", { static: false }) containerEl: ElementRef;
+
+  closeModal() {
+    if (this.closeOnBodyClick.toLocaleLowerCase() === "true") {
+      // window.$(`#${this.elementId}`).modal("hide");
+      window.$(this.containerEl.nativeElement).modal("hide");
+    }
+  }
 }

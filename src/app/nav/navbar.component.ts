@@ -40,11 +40,4 @@ export class NavBarComponent {
       this.foundSessions = sessions;
     });
   }
-
-  // onSessionClick(eventId) {
-  //   // this.router.navigateByUrl("/events/" + eventId);
-  //   this.router.navigateByUrl("/events/" + eventId);
-  //   // .then(() => this.router.navigate(["/events/" + eventId]));
-  //   // .then(() => this.router.navigate(["/events/" + eventId]));
-  // }
 }

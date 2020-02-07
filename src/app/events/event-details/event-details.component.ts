@@ -1,5 +1,5 @@
 import { Component, Inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
 import { TOASTR_TOKEN } from "../../common/toastr.service";
@@ -37,8 +37,16 @@ export class EventDetailsComponent {
   ) {}
 
   ngOnInit() {
-    const id: number = Number(this.route.snapshot.params["id"]);
-    this.event = this.eventService.getEvent(id);
+    // This was why the modal links weren't updating!
+    // We need to navigate to the same component, but with a different id
+    //
+    // const id: number = Number(this.route.snapshot.params["id"]);
+    // this.event = this.eventService.getEvent(id);
+    this.route.params.forEach((params: Params) => {
+      const id: number = Number(params["id"]);
+      this.event = this.eventService.getEvent(id);
+      this.addMode = false;
+    });
   }
 
   handleImageClick() {

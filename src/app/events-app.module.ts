@@ -13,7 +13,10 @@ import {
   EventListResolver,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent,
+  VoterService,
+  LocationValidator
 } from "./events/index";
 import { EventsAppComponent } from "./events-app.component";
 import { NavBarComponent } from "./nav/navbar.component";
@@ -45,7 +48,9 @@ import jQuery from "jquery";
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,8 @@ import jQuery from "jquery";
     {
       provide: JQ_TOKEN,
       useValue: jQuery
-    }
+    },
+    VoterService
   ],
   bootstrap: [EventsAppComponent]
 })

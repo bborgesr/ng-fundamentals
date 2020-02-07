@@ -65,7 +65,11 @@
   </div>
 </div>
 
-<simple-modal elementId="searchResults" title="Matching Sessions">
+<simple-modal
+  closeOnBodyClick="true"
+  elementId="searchResults"
+  title="Matching Sessions"
+>
   <div class="list-group">
     <a
       class="list-group-item"
@@ -75,8 +79,3 @@
     >
   </div>
 </simple-modal>
-
-<!--
-      (click)="onSessionClick(session.eventId)"
-      [routerLink]="['/events', session.eventId]"
--->
