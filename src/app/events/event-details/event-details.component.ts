@@ -37,18 +37,9 @@ export class EventDetailsComponent {
   ) {}
 
   ngOnInit() {
-    // This was why the modal links weren't updating!
-    // We need to navigate to the same component, but with a different id
-    //
-    // const id: number = Number(this.route.snapshot.params["id"]);
-    // this.event = this.eventService.getEvent(id);
     this.route.data.forEach(data => {
-      // const id: number = Number(params["id"]);
-      // this.eventService.getEvent(id).subscribe((event: IEvent) => {
-      // this.event = event;
       this.event = data["event"];
       this.addMode = false;
-      // });
     });
   }
 
@@ -67,7 +58,7 @@ export class EventDetailsComponent {
     );
     session.id = nextId + 1;
     this.event.sessions.push(session);
-    this.eventService.updateEvent(this.event);
+    this.eventService.saveEvent(this.event).subscribe();
     this.addMode = false;
   }
 
